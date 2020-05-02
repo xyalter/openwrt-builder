@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  REGISTRY: docker.io
+  REGISTRY_USERNAME: ${{ secrets.DOCKER_IO_USERNAME }}
+  REGISTRY_PASSWORD: ${{ secrets.DOCKER_IO_USERNAME }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the Docker image
+        run: docker build -t image image-builder/
+
+      - name: Log into registry
+        if: success()
+
+        run: echo "${{ secrets.DOCKER_IO_PASSWORD }}" |
+          docker login $REGISTRY -u ${{ secrets.DOCKER_IO_USERNAME }} --password-stdin
+
+      - name: Publish the Docker image
+        if: success()
+
+        run: |
+          IMAGE_ID=$REGISTRY/$REGISTRY_USERNAME/openwrt:imagebuilder-19.07.2
+
+          docker tag image $IMAGE_ID
+          docker push $IMAGE_ID
