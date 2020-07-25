@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+    paths:
+      - ".github/workflows/docker-image.yml"
+      - "image-builder/*"
+
 env:
   REGISTRY: docker.io
   REGISTRY_USERNAME: ${{ secrets.DOCKER_IO_USERNAME }}
