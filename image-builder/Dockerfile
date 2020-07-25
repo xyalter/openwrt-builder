@@ -7,7 +7,7 @@ RUN apt-get -qq update && DEBIAN_FRONTEND=noninteractive \
         python rsync man-db \
         libncurses-dev libssl-dev zlib1g-dev
 
-ARG VERSION='19.07.2'
+ARG VERSION='19.07.3'
 ARG ARCH=x86
 ARG BOARD=64
 

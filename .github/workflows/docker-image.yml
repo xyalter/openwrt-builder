@@ -34,7 +34,7 @@ jobs:
         if: success()
 
         run: |
-          IMAGE_ID=$REGISTRY/$REGISTRY_USERNAME/openwrt:imagebuilder-19.07.2
+          IMAGE_ID=$REGISTRY/$REGISTRY_USERNAME/openwrt:imagebuilder-19.07.3
 
           docker tag image $IMAGE_ID
           docker push $IMAGE_ID
