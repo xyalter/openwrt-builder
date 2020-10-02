@@ -24,9 +24,9 @@ check_stop() {
 
 /etc/init.d/softethervpnbridge start && \
 check_exec \
-    vpncmd /server localhost /cmd "ServerPasswordSet Test123!" && \
+    vpncmd /server localhost:5555 /cmd "ServerPasswordSet Test123!" && \
 check_exec \
-    vpncmd /server localhost /PASSWORD:Test123! /IN:/etc/sevpn-bridge.txt
+    vpncmd /server localhost:5555 /PASSWORD:Test123! /IN:/etc/sevpn-bridge.txt
 
 /etc/init.d/softethervpnbridge stop && check_stop && \
 /etc/init.d/softethervpnbridge enable && \
