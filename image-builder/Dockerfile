@@ -4,10 +4,10 @@ RUN apt-get -qq update && DEBIAN_FRONTEND=noninteractive \
     apt-get -yqq install \
         build-essential \
         git curl wget zip unzip gawk gettext file time \
-        python rsync man-db \
+        python python3 rsync man-db \
         libncurses-dev libssl-dev zlib1g-dev
 
-ARG VERSION='19.07.3'
+ARG VERSION='19.07.4'
 ARG ARCH=x86
 ARG BOARD=64
 

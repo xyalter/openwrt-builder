@@ -1,4 +1,4 @@
-FROM xxy1991/openwrt:imagebuilder-19.07.3
+FROM xxy1991/openwrt:imagebuilder-19.07.4
 
 RUN sed -i 's/^[^#].*SQUASHFS/# &/' .config && \
     sed -i '/^#.*VMDK/c\CONFIG_VMDK_IMAGES=y' .config && \

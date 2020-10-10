@@ -4,3 +4,6 @@ image-builder/openwrt-imagebuilder-*.tar.xz
 
 image-builder/*/*.tar.gz
 image-builder/*/*.vmdk
+
+.venv
+.vscode
