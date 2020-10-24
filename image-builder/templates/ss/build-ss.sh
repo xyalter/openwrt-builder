@@ -5,7 +5,7 @@ if [ -z $TEMPLATES_PATH ];then
 fi
 
 TEMPLATE_SS_PATH=$TEMPLATES_PATH/ss
-TEMPLATE_SS_PACKAGES="luci-app-chinadns luci-app-dns-forwarder \
+TEMPLATE_SS_PACKAGES="luci-compat luci-app-chinadns luci-app-dns-forwarder \
     shadowsocks-libev luci-app-shadowsocks \
     haveged iptables-mod-tproxy"
 
