@@ -7,4 +7,6 @@ echo "" >> /etc/sysupgrade.conf
 echo "/etc/keepalived/" >> /etc/sysupgrade.conf
 echo "/etc/conntrackd/" >> /etc/sysupgrade.conf
 
+ln -s /tmp/run /run
+
 exit 0
