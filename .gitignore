@@ -3,6 +3,8 @@
 image-builder/openwrt-imagebuilder-*.tar.xz
 
 image-builder/*/*.tar.gz
+image-builder/*/*.img.gz
+image-builder/*/*.img
 image-builder/*/*.vmdk
 
 .venv

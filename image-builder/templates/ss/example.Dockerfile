@@ -1,4 +1,4 @@
-FROM xxy1991/openwrt:imagebuilder
+FROM xxy1991/openwrt:imagebuilder-19.07.8
 
 ENV REPO_BASE=http://openwrt-dist.sourceforge.net/packages
 RUN echo "" >> repositories.conf && \
