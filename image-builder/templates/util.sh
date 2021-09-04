@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION='19.07.4'
+VERSION='19.07.7'
 ARCH=x86
 BOARD=64
 
