@@ -1,0 +1,67 @@
+name: build images
+
+on:
+  push:
+    branches:
+      - "main"
+
+    paths:
+      - ".github/workflows/build.yml"
+      - "image-builder/*.*"
+      - "image-builder/example/*"
+
+env:
+  PYBUILDER: "https://github.com/xyalter/openwrt-pybuilder/releases/download"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+          - { file: "example.json", output: "example" }
+          - { file: "base.json", output: "example-base" }
+          - { file: "ss.json", output: "ss" }
+          - { file: "softether.json", output: "softether" }
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: "Cache Python packages"
+        uses: actions/cache@v4
+        id: cache-pip
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Download and install .whl file
+        run: |
+          wget -N --content-disposition \
+            "$PYBUILDER/v0.1.0/openwrt_pybuilder-0.1.0-py3-none-any.whl"
+          pip3 install --force-reinstall openwrt_pybuilder-0.1.0-py3-none-any.whl
+
+      - name: "Cache OpenWrt packages"
+        uses: actions/cache@v4
+        id: cache-builder
+        with:
+          path: image-builder/example/cache
+          key: ${{ runner.os }}-builder-${{ hashFiles('image-builder/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-builder-
+
+      - name: "Build images"
+        run: |
+          cd image-builder/example
+          python3 build.py --config ${{ matrix.config.file }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "artifact-${{ matrix.config.output }}"
+          path: |
+            image-builder/example/${{ matrix.config.output }}-bin/**/*-rootfs.tar.gz
+            image-builder/example/${{ matrix.config.output }}-bin/**/*-squashfs-combined-efi.img.gz
