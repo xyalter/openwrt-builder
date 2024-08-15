@@ -1,4 +1,6 @@
-**/*-temp
+**/cache/
+**/*-temp/
+**/*-bin/
 
 image-builder/openwrt-imagebuilder-*.tar.xz
 
@@ -8,4 +10,3 @@ image-builder/*/*.img
 image-builder/*/*.vmdk
 
 .venv
-.vscode

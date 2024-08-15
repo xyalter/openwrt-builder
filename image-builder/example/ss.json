@@ -1,0 +1,11 @@
+{
+  "name": "ss",
+  "version": "23.05.4",
+  "arch": "x86",
+  "board": "64",
+  "env-file": "env.list",
+  "includes": ["base", "ss"],
+  "packages": ["luci-i18n-base-zh-cn", "luci-i18n-firewall-zh-cn"],
+  "files": ["files/", "Dockerfile"],
+  "disabled_services": []
+}

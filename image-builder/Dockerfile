@@ -2,12 +2,14 @@ FROM debian:latest
 
 RUN apt-get -qq update && DEBIAN_FRONTEND=noninteractive \
     apt-get -yqq install \
-        build-essential \
-        git curl wget zip unzip gawk gettext file time \
-        python python3 rsync man-db \
-        libncurses-dev libssl-dev zlib1g-dev
+        build-essential libncurses-dev zlib1g-dev \
+        gawk git gettext \
+        libssl-dev xsltproc \
+        rsync wget unzip \
+        python3 python3-distutils \
+        file qemu-utils
 
-ARG VERSION='19.07.8'
+ARG VERSION='23.05.4'
 ARG ARCH=x86
 ARG BOARD=64
 
@@ -25,6 +27,7 @@ RUN wget -P /data -q ${IMG_URL} && \
 WORKDIR /home/build/openwrt
 
 ONBUILD COPY files/ files/
+ONBUILD COPY packages/ packages/
 ONBUILD COPY custom-*.sh ./
 COPY docker-entrypoint.sh .
 ENTRYPOINT [ "./docker-entrypoint.sh" ]

@@ -1,0 +1,25 @@
+{
+  "name": "example",
+  "version": "23.05.4",
+  "arch": "x86",
+  "board": "64",
+  "env-file": "env.list",
+  "includes": ["base", "keepalived", "ss", "softether"],
+  "packages": [
+    "luci-i18n-base-zh-cn",
+    "luci-i18n-firewall-zh-cn",
+    "-ip-tiny",
+    "ip-full",
+    "luci-i18n-upnp-zh-cn",
+    "etherwake",
+    "iptables-mod-trace",
+    "bind-nslookup",
+    "luci-i18n-shadowsocks-libev-zh-cn"
+  ],
+  "files": ["files/", "Dockerfile"],
+  "disabled_services": [
+    "softethervpnbridge",
+    "softethervpnclient",
+    "softethervpnserver"
+  ]
+}

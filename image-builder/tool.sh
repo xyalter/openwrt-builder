@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 build(){
-    docker build -t xxy1991/openwrt:imagebuilder .
+    docker build -t ghcr.io/lesscodex/pkg/openwrt:imagebuilder .
 }
 
 get_package(){
-    docker pull xxy1991/openwrt:imagebuilder
-    docker run -d -i --name openwrt-imagebuilder xxy1991/openwrt:imagebuilder
+    docker pull ghcr.io/lesscodex/pkg/openwrt:imagebuilder
+    docker run -d -i --name openwrt-imagebuilder ghcr.io/lesscodex/pkg/openwrt:imagebuilder
 
-    FILE_NAME=openwrt-imagebuilder-19.07.8-x86-64.Linux-x86_64.tar.xz
+    FILE_NAME=openwrt-imagebuilder-23.05.4-x86-64.Linux-x86_64.tar.xz
 
     docker cp openwrt-imagebuilder:"/data/${FILE_NAME}" .
     docker container stop openwrt-imagebuilder
